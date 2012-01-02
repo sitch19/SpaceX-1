@@ -1,0 +1,991 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+   <head>
+      <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+      <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+      <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCxqHaj0e_uwo_Kq7c5fLXqZYulVZ1REuUY&sensor=false"></script>
+      <meta name="viewport" content = "inital_scale=1.0, user-scaleable=no"/>
+   </head>
+
+   <script type = 'text/javascript'>
+      $(document).ready(function(){
+         var options = {
+            zoom : 2,
+            center : new google.maps.LatLng(46.679594,2.175293),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          };
+
+          var map = new google.maps.Map(document.getElementById("map"), options);
+          var stations = [{
+   id : "SPA"
+   ,latitude : -89.99
+   ,longitude : -13.32
+   ,name : "South Pole"
+ }, {
+   id : "MCM"
+   ,latitude : -77.85
+   ,longitude : 166.7
+   ,name : "McMurdo"
+ }, {
+   id : "SBF"
+   ,latitude : -77.85
+   ,longitude : 166.75
+   ,name : "Scott Base"
+ }, {
+   id : "SPL"
+   ,latitude : -76.0
+   ,longitude : -84.0
+   ,name : "Siple"
+ }, {
+   id : "HBA"
+   ,latitude : -75.52
+   ,longitude : -26.6
+   ,name : "Halley Bay"
+ }, {
+   id : "MZH"
+   ,latitude : -70.43
+   ,longitude : 40.2
+   ,name : "Mizuho"
+ }, {
+   id : "SYO"
+   ,latitude : -69.01
+   ,longitude : 39.59
+   ,name : "Syowa"
+ }, {
+   id : "MAF"
+   ,latitude : -67.62
+   ,longitude : 62.89
+   ,name : "Mawson"
+ }, {
+   id : "FRZ"
+   ,latitude : -62.08
+   ,longitude : -58.39
+   ,name : "Ferraz"
+ }, {
+   id : "CCF"
+   ,latitude : -43.83
+   ,longitude : 172.68
+   ,name : "Christchurch"
+ }, {
+   id : "ADF"
+   ,latitude : -34.56
+   ,longitude : 138.48
+   ,name : "Adelaide"
+ }, {
+   id : "CTO"
+   ,latitude : -33.95
+   ,longitude : 18.47
+   ,name : "Cape Town"
+ }, {
+   id : "AQF"
+   ,latitude : -16.5
+   ,longitude : -71.5
+   ,name : "Arequipa"
+ }, {
+   id : "HUA"
+   ,latitude : -12.05
+   ,longitude : -75.34
+   ,name : "Huancayo"
+ }, {
+   id : "JRO"
+   ,latitude : -11.9
+   ,longitude : -76.0
+   ,name : "Jicamarca"
+ }, {
+   id : "CIA"
+   ,latitude : 1.95
+   ,longitude : -157.3
+   ,name : "Christmas Island"
+ }, {
+   id : "KGO"
+   ,latitude : 9.3
+   ,longitude : -5.4
+   ,name : "Korhogo"
+ }, {
+   id : "GUA"
+   ,latitude : 13.58
+   ,longitude : 144.87
+   ,name : "Guam"
+ }, {
+   id : "ARO"
+   ,latitude : 18.3
+   ,longitude : -66.75
+   ,name : "Arecibo"
+ }, {
+   id : "SJG"
+   ,latitude : 18.38
+   ,longitude : -66.12
+   ,name : "San Juan"
+ }, {
+   id : "TEO"
+   ,latitude : 19.74
+   ,longitude : 99.19
+   ,name : "Teoloyucan"
+ }, {
+   id : "HON"
+   ,latitude : 21.32
+   ,longitude : -158.06
+   ,name : "Honolulu"
+ }, {
+   id : "FIT"
+   ,latitude : 28.07
+   ,longitude : -80.95
+   ,name : "Florida Tech."
+ }, {
+   id : "JAX"
+   ,latitude : 30.35
+   ,longitude : -81.6
+   ,name : "Jacksonville Univ."
+ }, {
+   id : "SLU"
+   ,latitude : 30.44
+   ,longitude : 90.73
+   ,name : "SE Louisiana Univ."
+ }, {
+   id : "TUC"
+   ,latitude : 32.25
+   ,longitude : -110.83
+   ,name : "Tucson"
+ }, {
+   id : "USC"
+   ,latitude : 33.34
+   ,longitude : -81.46
+   ,name : "Univ. S. Carolina"
+ }, {
+   id : "MUI"
+   ,latitude : 34.8
+   ,longitude : 136.1
+   ,name : "Shigaraki"
+ }, {
+   id : "LAL"
+   ,latitude : 35.88
+   ,longitude : 106.67
+   ,name : "Los Alamos"
+ }, {
+   id : "KAK"
+   ,latitude : 36.23
+   ,longitude : 140.19
+   ,name : "Kakioka"
+ }, {
+   id : "DSO"
+   ,latitude : 36.25
+   ,longitude : -81.4
+   ,name : "Dark Sky Obs."
+ }, {
+   id : "BERK"
+   ,latitude : 37.881
+   ,longitude : -122.244
+   ,name : "THM_Berkeley"
+ }, {
+   id : "ASH"
+   ,latitude : 37.95
+   ,longitude : 58.11
+   ,name : "Ashkhabad"
+ }, {
+   id : "FRD"
+   ,latitude : 38.2
+   ,longitude : -77.4
+   ,name : "USGS Fredericksburg"
+ }, {
+   id : "ONW"
+   ,latitude : 38.43
+   ,longitude : 141.47
+   ,name : "Onagawa"
+ }, {
+   id : "AFA"
+   ,latitude : 39.01
+   ,longitude : 104.88
+   ,name : "USAFA Colorado"
+ }, {
+   id : "APL"
+   ,latitude : 39.17
+   ,longitude : -76.88
+   ,name : "Applied Physics Lab."
+ }, {
+   id : "CCNV"
+   ,latitude : 39.19
+   ,longitude : -119.78
+   ,name : "THM_Carson City"
+ }, {
+   id : "GDN"
+   ,latitude : 39.75
+   ,longitude : -105.16
+   ,name : "Golden"
+ }, {
+   id : "UIL"
+   ,latitude : 40.1
+   ,longitude : -88.1
+   ,name : "Urbana"
+ }, {
+   id : "PLA"
+   ,latitude : 40.13
+   ,longitude : -104.5
+   ,name : "Platteville"
+ }, {
+   id : "BLD"
+   ,latitude : 40.13
+   ,longitude : -105.24
+   ,name : "Boulder"
+ }, {
+   id : "BOU"
+   ,latitude : 40.14
+   ,longitude : -105.24
+   ,name : "Boulder"
+ }, {
+   id : "LOYS"
+   ,latitude : 40.17
+   ,longitude : -78.38
+   ,name : "THM_Loysburg"
+ }, {
+   id : "CSL"
+   ,latitude : 40.59
+   ,longitude : -105.14
+   ,name : "Ft Collins"
+ }, {
+   id : "TKT"
+   ,latitude : 41.33
+   ,longitude : 69.62
+   ,name : "Tashkent"
+ }, {
+   id : "USI"
+   ,latitude : 41.4
+   ,longitude : -111.5
+   ,name : "Bear Lake"
+ }, {
+   id : "TFS"
+   ,latitude : 42.09
+   ,longitude : 44.71
+   ,name : "Tbilisi"
+ }, {
+   id : "WES"
+   ,latitude : 42.38
+   ,longitude : -71.32
+   ,name : "Weston"
+ }, {
+   id : "PFP"
+   ,latitude : 42.4
+   ,longitude : -86.93
+   ,name : "Peach Mountain"
+ }, {
+   id : "MLH"
+   ,latitude : 42.6
+   ,longitude : -71.48
+   ,name : "Millstone Hill"
+ }, {
+   id : "PINE"
+   ,latitude : 43.11
+   ,longitude : -102.6
+   ,name : "THM_Pine Ridge"
+ }, {
+   id : "DUM"
+   ,latitude : 43.12
+   ,longitude : -70.94
+   ,name : "Durham"
+ }, {
+   id : "AAA"
+   ,latitude : 43.2
+   ,longitude : 76.9
+   ,name : "Alma-Ata"
+ }, {
+   id : "RMUS"
+   ,latitude : 43.6
+   ,longitude : -85.16
+   ,name : "THM_Remus"
+ }, {
+   id : "GTF"
+   ,latitude : 43.62
+   ,longitude : -71.95
+   ,name : "Grafton Test Facility"
+ }, {
+   id : "CLK"
+   ,latitude : 44.7
+   ,longitude : -75.0
+   ,name : "Clarkson University"
+ }, {
+   id : "SWNO"
+   ,latitude : 44.78
+   ,longitude : -88.6
+   ,name : "THM_Shawano"
+ }, {
+   id : "DRBY"
+   ,latitude : 44.95
+   ,longitude : -72.13
+   ,name : "THM_Derby"
+ }, {
+   id : "UKIA"
+   ,latitude : 45.13
+   ,longitude : -118.93
+   ,name : "THM_Ukiah"
+ }, {
+   id : "OTT"
+   ,latitude : 45.4
+   ,longitude : -75.5
+   ,name : "Ottawa"
+ }, {
+   id : "NKK"
+   ,latitude : 45.8
+   ,longitude : 62.1
+   ,name : "Novokazalinsk"
+ }, {
+   id : "FYTS"
+   ,latitude : 46.09
+   ,longitude : -100.65
+   ,name : "THM_Fort Yates"
+ }, {
+   id : "BMLS"
+   ,latitude : 46.24
+   ,longitude : -84.34
+   ,name : "THM_Bay Mills"
+ }, {
+   id : "STJ"
+   ,latitude : 47.59
+   ,longitude : -52.68
+   ,name : "St. Johns"
+ }, {
+   id : "HOTS"
+   ,latitude : 47.59
+   ,longitude : -114.66
+   ,name : "THM_Hot Springs"
+ }, {
+   id : "NEW"
+   ,latitude : 48.26
+   ,longitude : -117.12
+   ,name : "Newport"
+ }, {
+   id : "VIC"
+   ,latitude : 48.52
+   ,longitude : -123.42
+   ,name : "Victoria"
+ }, {
+   id : "KAPU"
+   ,latitude : 49.39
+   ,longitude : -82.32
+   ,name : "THM_Kapuskasing"
+ }, {
+   id : "GLL"
+   ,latitude : 49.6
+   ,longitude : -97.1
+   ,name : "Glenlea"
+ }, {
+   id : "CHBG"
+   ,latitude : 49.81
+   ,longitude : -74.42
+   ,name : "THM_Chibougamau"
+ }, {
+   id : "KGD"
+   ,latitude : 49.82
+   ,longitude : 73.08
+   ,name : "Karaganda"
+ }, {
+   id : "DOU"
+   ,latitude : 50.1
+   ,longitude : 4.6
+   ,name : "Dourbes"
+ }, {
+   id : "PINA"
+   ,latitude : 50.16
+   ,longitude : -96.07
+   ,name : "THM_Pinawa"
+ }, {
+   id : "PNW"
+   ,latitude : 50.2
+   ,longitude : -96.04
+   ,name : "Pinawa"
+ }, {
+   id : "KIV"
+   ,latitude : 50.72
+   ,longitude : 30.3
+   ,name : "Kiev"
+ }, {
+   id : "RDL"
+   ,latitude : 50.9
+   ,longitude : -93.5
+   ,name : "Red Lake"
+ }, {
+   id : "COF"
+   ,latitude : 52.0
+   ,longitude : 15.0
+   ,name : "Collm"
+ }, {
+   id : "SHF"
+   ,latitude : 52.16
+   ,longitude : -106.53
+   ,name : "Saskatoon"
+ }, {
+   id : "IRT"
+   ,latitude : 52.46
+   ,longitude : 104.04
+   ,name : "Irkutsk"
+ }, {
+   id : "GBAY"
+   ,latitude : 53.32
+   ,longitude : -60.46
+   ,name : "THM_Goose Bay"
+ }, {
+   id : "NIP"
+   ,latitude : 53.5
+   ,longitude : -103.7
+   ,name : "Nipawin"
+ }, {
+   id : "PGEO"
+   ,latitude : 53.82
+   ,longitude : -122.83
+   ,name : "THM_Prince George"
+ }, {
+   id : "ISL"
+   ,latitude : 53.88
+   ,longitude : -94.68
+   ,name : "Island Lake"
+ }, {
+   id : "TPAS"
+   ,latitude : 53.99
+   ,longitude : -100.94
+   ,name : "THM_Flin Flon/The Pas"
+ }, {
+   id : "MEA"
+   ,latitude : 54.62
+   ,longitude : -112.33
+   ,name : "Meanook"
+ }, {
+   id : "KNG"
+   ,latitude : 54.7
+   ,longitude : 20.62
+   ,name : "Kaliningrad"
+ }, {
+   id : "ATHA"
+   ,latitude : 54.71
+   ,longitude : -113.31
+   ,name : "THM_Athabasca"
+ }, {
+   id : "NVS"
+   ,latitude : 55.03
+   ,longitude : 82.9
+   ,name : "Novosibirsk"
+ }, {
+   id : "PBQ"
+   ,latitude : 55.27
+   ,longitude : -77.75
+   ,name : "Poste_Baleine"
+ }, {
+   id : "ESK"
+   ,latitude : 55.32
+   ,longitude : -3.2
+   ,name : "Eskdalemuir"
+ }, {
+   id : "MOS"
+   ,latitude : 55.48
+   ,longitude : 37.31
+   ,name : "Moscow"
+ }, {
+   id : "GILL"
+   ,latitude : 56.35
+   ,longitude : -94.66
+   ,name : "THM_Gillam"
+ }, {
+   id : "TMK"
+   ,latitude : 56.47
+   ,longitude : 84.93
+   ,name : "Tomsk"
+ }, {
+   id : "NAIN"
+   ,latitude : 56.5
+   ,longitude : -61.7
+   ,name : "THM_Nain"
+ }, {
+   id : "SNKQ"
+   ,latitude : 56.54
+   ,longitude : -79.23
+   ,name : "THM_Sanikiluaq"
+ }, {
+   id : "FMM"
+   ,latitude : 56.73
+   ,longitude : -111.38
+   ,name : "Fort McMurray"
+ }, {
+   id : "SVD"
+   ,latitude : 56.73
+   ,longitude : 61.07
+   ,name : "Sverdlovsk"
+ }, {
+   id : "PTRS"
+   ,latitude : 56.83
+   ,longitude : -133.16
+   ,name : "THM_Petersburg"
+ }, {
+   id : "GIM"
+   ,latitude : 56.85
+   ,longitude : -94.42
+   ,name : "Gillam"
+ }, {
+   id : "LYN"
+   ,latitude : 56.85
+   ,longitude : -101.07
+   ,name : "Lynn Lake"
+ }, {
+   id : "SIT"
+   ,latitude : 57.05
+   ,longitude : -135.33
+   ,name : "Sitka"
+ }, {
+   id : "BKC"
+   ,latitude : 57.68
+   ,longitude : -94.23
+   ,name : "Back"
+ }, {
+   id : "RBL"
+   ,latitude : 58.22
+   ,longitude : -103.67
+   ,name : "Rabbit Lake"
+ }, {
+   id : "FCC"
+   ,latitude : 58.8
+   ,longitude : -94.1
+   ,name : "Fort Churchill"
+ }, {
+   id : "STM"
+   ,latitude : 59.5
+   ,longitude : 18.2
+   ,name : "Stockholm"
+ }, {
+   id : "UPP"
+   ,latitude : 59.8
+   ,longitude : 17.6
+   ,name : "Uppsala"
+ }, {
+   id : "LNN"
+   ,latitude : 59.95
+   ,longitude : 30.71
+   ,name : "Leningrad"
+ }, {
+   id : "FSMI"
+   ,latitude : 59.98
+   ,longitude : -111.84
+   ,name : "THM_Fort Smith"
+ }, {
+   id : "FSM"
+   ,latitude : 60.0
+   ,longitude : -112.0
+   ,name : "Fort_Smith"
+ }, {
+   id : "WFP"
+   ,latitude : 60.06
+   ,longitude : -128.58
+   ,name : "Watson Lake"
+ }, {
+   id : "MGD"
+   ,latitude : 60.12
+   ,longitude : 151.02
+   ,name : "Magadan"
+ }, {
+   id : "NUR"
+   ,latitude : 60.51
+   ,longitude : 24.66
+   ,name : "Nurmijarvi"
+ }, {
+   id : "WHIT"
+   ,latitude : 61.01
+   ,longitude : -135.22
+   ,name : "THM_White Horse"
+ }, {
+   id : "EKP"
+   ,latitude : 61.1
+   ,longitude : -94.07
+   ,name : "Eskimo Point"
+ }, {
+   id : "NAQ"
+   ,latitude : 61.1
+   ,longitude : -45.2
+   ,name : "Narssarssuaq"
+ }, {
+   id : "AMU"
+   ,latitude : 61.24
+   ,longitude : -149.87
+   ,name : "Anchorage"
+ }, {
+   id : "POD"
+   ,latitude : 61.6
+   ,longitude : 90.0
+   ,name : "Podk. Tunguska"
+ }, {
+   id : "FSP"
+   ,latitude : 61.75
+   ,longitude : -121.23
+   ,name : "Fort_Simpson"
+ }, {
+   id : "FSIM"
+   ,latitude : 61.76
+   ,longitude : -121.22
+   ,name : "THM_Fort Simpson"
+ }, {
+   id : "YAK"
+   ,latitude : 62.02
+   ,longitude : 129.72
+   ,name : "Yakutsk"
+ }, {
+   id : "TLK"
+   ,latitude : 62.3
+   ,longitude : -150.1
+   ,name : "Talkeetna"
+ }, {
+   id : "FHF"
+   ,latitude : 62.32
+   ,longitude : 26.61
+   ,name : "Hankasalmi"
+ }, {
+   id : "GAK"
+   ,latitude : 62.39
+   ,longitude : -145.15
+   ,name : "HAARP/Gakona"
+ }, {
+   id : "GAKO"
+   ,latitude : 62.41
+   ,longitude : -145.16
+   ,name : "THM_HAARP/Gakona"
+ }, {
+   id : "YKC"
+   ,latitude : 62.4
+   ,longitude : -114.5
+   ,name : "Yellowknife"
+ }, {
+   id : "RIT"
+   ,latitude : 62.8
+   ,longitude : -92.33
+   ,name : "Rankin_Inlet"
+ }, {
+   id : "RANK"
+   ,latitude : 62.83
+   ,longitude : -92.11
+   ,name : "THM_Rankin Inlet"
+ }, {
+   id : "MCGR"
+   ,latitude : 62.95
+   ,longitude : -155.6
+   ,name : "THM_Mcgrath"
+ }, {
+   id : "IQA"
+   ,latitude : 63.8
+   ,longitude : -68.6
+   ,name : "Iqaluit"
+ }, {
+   id : "WHF"
+   ,latitude : 63.86
+   ,longitude : -22.02
+   ,name : "Stokkseyri"
+ }, {
+   id : "EHF"
+   ,latitude : 63.86
+   ,longitude : -19.2
+   ,name : "Pykkvibaerehf"
+ }, {
+   id : "DWC"
+   ,latitude : 64.07
+   ,longitude : -139.42
+   ,name : "Dawson City"
+ }, {
+   id : "BLC"
+   ,latitude : 64.33
+   ,longitude : -96.03
+   ,name : "Baker Lake"
+ }, {
+   id : "ARK"
+   ,latitude : 64.6
+   ,longitude : 40.5
+   ,name : "Arkhangelsk"
+ }, {
+   id : "LYS"
+   ,latitude : 64.62
+   ,longitude : 18.77
+   ,name : "Lycksele"
+ }, {
+   id : "HSF"
+   ,latitude : 64.67
+   ,longitude : -21.03
+   ,name : "Husafell"
+ }, {
+   id : "EKAT"
+   ,latitude : 64.72
+   ,longitude : -109.33
+   ,name : "THM_Lac de Gras/Ekati"
+ }, {
+   id : "CMO"
+   ,latitude : 64.85
+   ,longitude : -147.83
+   ,name : "College"
+ }, {
+   id : "NOW"
+   ,latitude : 64.9
+   ,longitude : -125.5
+   ,name : "Norman Wells"
+ }, {
+   id : "OUL"
+   ,latitude : 65.1
+   ,longitude : 25.85
+   ,name : "Oulu"
+ }, {
+   id : "COW"
+   ,latitude : 65.73
+   ,longitude : -111.25
+   ,name : "Contwoyto Lake"
+ }, {
+   id : "IFJ"
+   ,latitude : 66.08
+   ,longitude : -23.13
+   ,name : "Isafjordur"
+ }, {
+   id : "TJN"
+   ,latitude : 66.2
+   ,longitude : -17.12
+   ,name : "Tjornes"
+ }, {
+   id : "FYKN"
+   ,latitude : 66.56
+   ,longitude : -145.21
+   ,name : "THM_Fort Yukon"
+ }, {
+   id : "FYU"
+   ,latitude : 66.57
+   ,longitude : -145.27
+   ,name : "Fort_Yukon"
+ }, {
+   id : "PEL"
+   ,latitude : 66.9
+   ,longitude : 24.08
+   ,name : "Pello"
+ }, {
+   id : "KIAN"
+   ,latitude : 66.97
+   ,longitude : -160.44
+   ,name : "THM_Kiana"
+ }, {
+   id : "STF"
+   ,latitude : 67.02
+   ,longitude : -50.72
+   ,name : "Sondrestrom"
+ }, {
+   id : "SOD"
+   ,latitude : 67.37
+   ,longitude : 26.65
+   ,name : "Sodankyla"
+ }, {
+   id : "SOD"
+   ,latitude : 67.37
+   ,longitude : 26.65
+   ,name : "ECAT-Sodankyla"
+ }, {
+   id : "KIR"
+   ,latitude : 67.83
+   ,longitude : 20.42
+   ,name : "Kiruna"
+ }, {
+   id : "KIR"
+   ,latitude : 67.83
+   ,longitude : 20.42
+   ,name : "ECAT-Kiruna"
+ }, {
+   id : "MUO"
+   ,latitude : 68.02
+   ,longitude : 23.53
+   ,name : "Muonio"
+ }, {
+   id : "AVI"
+   ,latitude : 68.13
+   ,longitude : -145.57
+   ,name : "Arctic Village"
+ }, {
+   id : "INK"
+   ,latitude : 68.25
+   ,longitude : -133.3
+   ,name : "Inuvik"
+ }, {
+   id : "INUV"
+   ,latitude : 68.41
+   ,longitude : -133.77
+   ,name : "THM_Inuvik"
+ }, {
+   id : "IVA"
+   ,latitude : 68.6
+   ,longitude : 27.48
+   ,name : "Ivalo"
+ }, {
+   id : "ALT"
+   ,latitude : 68.9
+   ,longitude : 22.96
+   ,name : "Alta"
+ }, {
+   id : "CPS"
+   ,latitude : 68.92
+   ,longitude : -179.48
+   ,name : "Cape Schmidt"
+ }, {
+   id : "MMK"
+   ,latitude : 68.95
+   ,longitude : 33.05
+   ,name : "Murmansk"
+ }, {
+   id : "KAU"
+   ,latitude : 69.02
+   ,longitude : 23.05
+   ,name : "Kautokeino"
+ }, {
+   id : "KIL"
+   ,latitude : 69.05
+   ,longitude : 20.7
+   ,name : "Kilpisjarvi"
+ }, {
+   id : "CBB"
+   ,latitude : 69.2
+   ,longitude : -105.0
+   ,name : "Cambridge Bay"
+ }, {
+   id : "GDH"
+   ,latitude : 69.24
+   ,longitude : -53.52
+   ,name : "Godhavn"
+ }, {
+   id : "NOK"
+   ,latitude : 69.4
+   ,longitude : 88.1
+   ,name : "Norilsk"
+ }, {
+   id : "AMD"
+   ,latitude : 69.47
+   ,longitude : 61.42
+   ,name : "Amderma"
+ }, {
+   id : "TRO"
+   ,latitude : 69.66
+   ,longitude : 18.95
+   ,name : "Tromso"
+ }, {
+   id : "TRO"
+   ,latitude : 69.66
+   ,longitude : 18.95
+   ,name : "ECAT-Tromso"
+ }, {
+   id : "KEV"
+   ,latitude : 69.76
+   ,longitude : 27.01
+   ,name : "Kevo"
+ }, {
+   id : "CPY"
+   ,latitude : 70.17
+   ,longitude : -124.72
+   ,name : "Cape Parry"
+ }, {
+   id : "SOE"
+   ,latitude : 70.54
+   ,longitude : 22.22
+   ,name : "Soroya"
+ }, {
+   id : "BRW"
+   ,latitude : 71.3
+   ,longitude : -156.75
+   ,name : "Barrow"
+ }, {
+   id : "TIK"
+   ,latitude : 71.58
+   ,longitude : 129.0
+   ,name : "Tixie Bay"
+ }, {
+   id : "SKG"
+   ,latitude : 71.9
+   ,longitude : 82.1
+   ,name : "Sopoch. Karga"
+ }, {
+   id : "SAH"
+   ,latitude : 72.0
+   ,longitude : -125.0
+   ,name : "Sachs Harbor"
+ }, {
+   id : "DIK"
+   ,latitude : 73.54
+   ,longitude : 80.56
+   ,name : "Dixon Island"
+ }, {
+   id : "RES"
+   ,latitude : 74.7
+   ,longitude : -94.9
+   ,name : "Resolute Bay"
+ }, {
+   id : "IZV"
+   ,latitude : 75.9
+   ,longitude : 82.7
+   ,name : "Izvestia"
+ }, {
+   id : "KOT"
+   ,latitude : 76.0
+   ,longitude : 137.9
+   ,name : "Kotelny"
+ }, {
+   id : "MBC"
+   ,latitude : 76.2
+   ,longitude : -119.4
+   ,name : "Mould Bay"
+ }, {
+   id : "HRN"
+   ,latitude : 77.0
+   ,longitude : 15.55
+   ,name : "Hornsund"
+ }, {
+   id : "TFP"
+   ,latitude : 76.53
+   ,longitude : -68.44
+   ,name : "Thule"
+ }, {
+   id : "THL"
+   ,latitude : 77.48
+   ,longitude : -69.17
+   ,name : "Thule/Qaanaaq"
+ }, {
+   id : "UDN"
+   ,latitude : 77.5
+   ,longitude : 82.3
+   ,name : "Uedinenie"
+ }, {
+   id : "ESR"
+   ,latitude : 78.15
+   ,longitude : 16.03
+   ,name : "ECAT-Svalbard"
+ }, {
+   id : "VIZ"
+   ,latitude : 79.5
+   ,longitude : 78.1
+   ,name : "Vize"
+ }, {
+   id : "LNC"
+   ,latitude : 78.9
+   ,longitude : 12.0
+   ,name : "Ny Alesund"
+ }, {
+   id : "HIS"
+   ,latitude : 80.62
+   ,longitude : 58.05
+   ,name : "Heiss Island"
+ }, {
+   id : "NOC"
+   ,latitude : 81.6
+   ,longitude : -16.6
+   ,name : "Nord"
+ }, {
+   id : "ALE"
+   ,latitude : 82.5
+   ,longitude : -62.5
+   ,name : "Alert"
+ }];
+
+          for (station in stations)
+          {
+             var s = stations[station];
+             latlng = new google.maps.LatLng(s.latitude, s.longitude);
+             var marker = new google.maps.Marker({position: latlng});
+             marker.setMap(map);
+          };
+      });
+
+   </script>
+
+   <body>
+      <div id="map" style = "width: 100%; height: 100%"></div>
+   </body>
+</html>
+
