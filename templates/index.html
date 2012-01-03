@@ -4,27 +4,68 @@
       <script src="http://code.jquery.com/jquery-latest.min.js"></script>
       <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
       <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCxqHaj0e_uwo_Kq7c5fLXqZYulVZ1REuUY&sensor=false"></script>
-      <meta name="viewport" content = "inital_scale=1.0, user-scaleable=no"/>
+      <meta name="viewport" content = "initial-scale=1.0, user-scalable=no"/>
    </head>
+
+   <title>NASA Ground Stations by Christopher G Dolan for SpaceX</title>
 
    <script type = 'text/javascript'>
       $(document).ready(function(){
+
+         //map options: large zoom, center on Europe, Roadmap type
          var options = {
             zoom : 2,
             center : new google.maps.LatLng(46.679594,2.175293),
             mapTypeId: google.maps.MapTypeId.ROADMAP
           };
 
+          //create the map
           var map = new google.maps.Map(document.getElementById("map"), options);
+
+          //get stations from server
           var stations = {{stations|safe}};
 
-          for (station in stations)
-          {
+          for (station in stations){
              var s = stations[station];
-             latlng = new google.maps.LatLng(s.latitude, s.longitude);
-             var marker = new google.maps.Marker({position: latlng});
+
+             //make a latitude/longitude object
+             var latlng = new google.maps.LatLng(s.latitude,s.longitude);
+
+             //make a map marker
+             var marker = new google.maps.Marker({position:latlng, map: map});
+
+             //plot the marker on the map
              marker.setMap(map);
-          };
+          }
+
+
+             //code to plot country flags - not complete.
+             // Would need to set up static files in django and resolve Google OVER_QUERY_LIMIT error
+             /*geocoder = new google.maps.Geocoder();
+             geocoder.geocode({'latLng' : latlng}, function(results, status){
+                 iconName = null;
+                 var marker;
+                 //if reverse geocode is successfull, find country abbreviation and create icon file name
+                 if (status == google.maps.GeocoderStatus.OK){
+                    findCountry:
+                    for (j=0; j < results.length; j++){
+                       for (k = 0; k < results[j].address_components.length;k++){
+                          if (results[j].address_components[k].types.indexOf('country') >-1){
+                             iconName = "/images/"+ results[j].address_components[k].short_name + ".png";
+                             break findCountry;
+                          }
+                       }
+                    }
+                  }
+                  //successfully got a country name, plot it with the right flag, otherwise just plot a regular marker.
+                  if (iconName){
+                       marker = new google.maps.Marker({position:latlng, map : map, icon: iconName });
+                  } else {
+                      marker = new google.maps.Marker({position:latlng, map : map});    
+                  }
+                  marker.setMap(map);
+             });*/
+            
       });
 
    </script>

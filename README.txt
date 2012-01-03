@@ -1,6 +1,7 @@
 Prereqs:
 Python 2.7
 Django 1.3.1 - An MVC web framework for Python
+Suds - Python SOAP framework
 
 To run the project:
 python manage.py runserver
@@ -18,6 +19,8 @@ views.py - MVC controller, contains all logic functions for the project
 NASASatelliteSituationCenterWebService.py - class that interfaces with NASA's web services
 
 'templates' folder - MVC views, contains all html template pages
+
+'images' folder - contains country flag images in .png format
 
 __init__.py - needed so Python treats directory as a package
 
